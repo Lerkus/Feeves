@@ -5,12 +5,13 @@ public class player : MonoBehaviour
 {
     private Rigidbody rb;
     private bool jumping = false;
+    private bool landing = false;
+    private Animator playerAnimation;
+
     public float jumpHightTweaker = 10;
     public float wallkingTweaker = 1;
     public float flyTweaker = 0.5f;
-    private bool landing = false;
-    private Animator playerAnimation;
-    
+    public float maxSpeed = 5;
 
     public isGrounded grounder;
     public isSided[] sides;
@@ -19,12 +20,12 @@ public class player : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody>();
         playerAnimation = GetComponentInChildren<Animator>();
-        
+
     }
 
     void Update()
     {
-        if(jumping && !grounder._grounded)
+        if (jumping && !grounder._grounded)
         {
             landing = true;
         }
@@ -42,20 +43,20 @@ public class player : MonoBehaviour
         }
         if (rb.velocity.x > 0.01)
         {
-            
+
             transform.Find("Playermodell").LookAt(new Vector3(1000, 0, 0));
             playerAnimation.SetBool("IsWalking", true);
         }
-        else if(rb.velocity.x < -0.01)
+        else if (rb.velocity.x < -0.01)
         {
             playerAnimation.SetTrigger("IsWalking");
-            transform.Find("Playermodell").LookAt(new Vector3(-1000,0,0));
+            transform.Find("Playermodell").LookAt(new Vector3(-1000, 0, 0));
             playerAnimation.SetBool("IsWalking", true);
         }
         else
         {
             playerAnimation.SetBool("IsWalking", false);
-            
+
         }
         horizontalMove();
     }
@@ -66,7 +67,7 @@ public class player : MonoBehaviour
 
         if (landing && sides[0]._touching)
         {
-            input.x = Mathf.Clamp(input.x,0,1);
+            input.x = Mathf.Clamp(input.x, 0, 1);
         }
         else if (landing && sides[1]._touching)
         {
@@ -83,6 +84,7 @@ public class player : MonoBehaviour
         }
 
         rb.AddForce(input, ForceMode.VelocityChange);
+        rb.velocity = new Vector3(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed), rb.velocity.y, 0);
     }
 
     public void jump()
@@ -91,7 +93,7 @@ public class player : MonoBehaviour
         {
             playerAnimation.SetTrigger("Jumping");
             rb.AddForce(new Vector3(0, jumpHightTweaker, 0), ForceMode.VelocityChange);
-        
+
         }
         jumping = true;
     }

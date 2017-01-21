@@ -1,42 +1,15 @@
 fileFormatVersion: 2
-guid: 6d18b3b477c53544b95743e1ee7cf56a
-timeCreated: 1484958020
+guid: 9e12308dd7598b54aa3e85d6aa776a76
+timeCreated: 1485025903
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Cylinder
-    100002: Plane.001
-    100004: Plane.002
-    100006: Plane.003
-    100008: Plane.008
-    100010: Plane.010
-    100012: //RootNode
-    400000: Cylinder
-    400002: Plane.001
-    400004: Plane.002
-    400006: Plane.003
-    400008: Plane.008
-    400010: Plane.010
-    400012: //RootNode
-    2300000: Cylinder
-    2300002: Plane.001
-    2300004: Plane.002
-    2300006: Plane.003
-    2300008: Plane.008
-    2300010: Plane.010
-    3300000: Cylinder
-    3300002: Plane.001
-    3300004: Plane.002
-    3300006: Plane.003
-    3300008: Plane.008
-    3300010: Plane.010
-    4300000: Plane.010
-    4300002: Cylinder
-    4300004: Plane.008
-    4300006: Plane.003
-    4300008: Plane.002
-    4300010: Plane.001
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Poster
   materials:
     importMaterials: 1
     materialName: 0

@@ -19,7 +19,11 @@ public class music : MonoBehaviour
     private int moodCounterMax;
 
     private float globalVolume = 0.25f;
-    private float timeBetweenMoodUpdate = 10f;
+    private float timeBetweenMoodUpdate = 1f;
+
+    private GameObject[] playerObjects;
+    private GameObject[] happyObjects;
+    private GameObject[] sadObjects;
 
     List<Coroutine> fading = new List<Coroutine>();
 
@@ -37,6 +41,17 @@ public class music : MonoBehaviour
         muteAllSpecial();
         startMoodWave();
         setVolumeAll(globalVolume);
+
+        playerObjects = GameObject.FindGameObjectsWithTag("Player");
+        happyObjects = GameObject.FindGameObjectsWithTag("Happy");
+        sadObjects = GameObject.FindGameObjectsWithTag("Sad");
+
+        globalMoodChange("Happy");
+    }
+
+    public void Start()
+    {
+        
     }
 
     public void setVolumeAll(float intensity)
@@ -83,6 +98,7 @@ public class music : MonoBehaviour
         {
             happy[i].mute = false;
         }
+        globalMoodChange("Happy");
     }
 
     public void playSad(int intensity)
@@ -93,7 +109,28 @@ public class music : MonoBehaviour
         {
             sad[i].mute = false;
         }
+        globalMoodChange("Sad");
     }
+
+
+    private void globalMoodChange(string tagToActivate)
+    {
+        for (int i = 0; i < playerObjects.Length; i++)
+        {
+            playerObjects[i].GetComponent<controll>().change(tagToActivate);
+        }
+
+        for (int i = 0; i < happyObjects.Length; i++)
+        {
+            happyObjects[i].GetComponent<controll>().change(tagToActivate);
+        }
+
+        for (int i = 0; i < sadObjects.Length; i++)
+        {
+            sadObjects[i].GetComponent<controll>().change(tagToActivate);
+        }
+    }
+
 
     public void playMood(int intensity)
     {
@@ -101,7 +138,7 @@ public class music : MonoBehaviour
         {
             playHappy(intensity);
         }
-        else if(intensity < 0)
+        else if (intensity < 0)
         {
             playSad((int)Mathf.Abs(intensity));
         }
@@ -131,8 +168,8 @@ public class music : MonoBehaviour
             Debug.Log("Habe die Fade richtung umgedreht!");
             Debug.Log(fading);
         }
-        
-        if(moodCounter == 0)
+
+        if (moodCounter == 0)
         {
             fadingIn = !fadingIn;
             Debug.Log("Habe die Fade richtung umgedreht!");
@@ -155,7 +192,7 @@ public class music : MonoBehaviour
         {
             happy[moodCounter - 1].volume = progress * progress * globalVolume;
         }
-        else if(moodCounter < 0)
+        else if (moodCounter < 0)
         {
             sad[(-moodCounter) - 1].volume = progress * progress * globalVolume;
         }
@@ -193,9 +230,9 @@ public class music : MonoBehaviour
             endI = 0;
         }
 
-        for(int i = startI; fadingIn ? i <= endI : i >= endI;)
+        for (int i = startI; fadingIn ? i <= endI : i >= endI;)
         {
-            fade(((float)i)/100, moodCounterToWorkOn);
+            fade(((float)i) / 100, moodCounterToWorkOn);
 
             if (fadingIn)
             {
@@ -205,7 +242,7 @@ public class music : MonoBehaviour
             {
                 i--;
             }
-            
+
             yield return new WaitForSeconds(timeBetweenMoodUpdate / 100);
         }
         StopCoroutine(fading[0]);

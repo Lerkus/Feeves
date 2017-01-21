@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class music : MonoBehaviour {
+public class music : MonoBehaviour
+{
 
     public AudioSource[] basic;
     public AudioSource[] happy;
@@ -10,6 +11,14 @@ public class music : MonoBehaviour {
     private music musicReference;
 
     private int moodCounter = 0;
+    private bool moodImproving = true;
+
+    private bool moodCanBeHappy = false;
+    private bool moodCanBeSad = false;
+
+    private float globalVolume = 0.25f;
+
+    Coroutine fading;
 
     public music _Reference
     {
@@ -21,9 +30,8 @@ public class music : MonoBehaviour {
     {
         musicReference = this;
         muteAllSpecial();
-        playHappy(111);
-        playSad(111);
-        setVolumeAll(0.25f);
+        //startMoodWave();
+        setVolumeAll(globalVolume);
     }
 
     public void setVolumeAll(float intensity)
@@ -61,7 +69,7 @@ public class music : MonoBehaviour {
 
     public void playHappy(int intensity)
     {
-        intensity = (int) Mathf.Clamp(intensity,0,happy.Length);
+        intensity = (int)Mathf.Clamp(intensity, 1, happy.Length);
         muteAllSpecial();
         for (int i = 0; i < intensity; i++)
         {
@@ -71,7 +79,7 @@ public class music : MonoBehaviour {
 
     public void playSad(int intensity)
     {
-        intensity = (int)Mathf.Clamp(intensity, 0, sad.Length);
+        intensity = (int)Mathf.Clamp(intensity, 1, sad.Length);
         muteAllSpecial();
         for (int i = 0; i < intensity; i++)
         {
@@ -85,17 +93,60 @@ public class music : MonoBehaviour {
         {
             playHappy(intensity);
         }
+        else if(intensity < 0)
+        {
+            playSad((int)Mathf.Abs(intensity));
+        }
         else
         {
-            playSad( (int)Mathf.Abs(intensity));
+            muteAllSpecial();
         }
+    }
+
+    public void startMoodWave()
+    {
+        StartCoroutine(moodWave());
+    }
+
+    private void updateMood()
+    {
+        if (moodCounter == happy.Length + 1 ? moodImproving = false : false) ;
+        if (moodCounter == -sad.Length + 1 ? moodImproving = true : false) ;
+
+        if (moodImproving)
+        {
+            moodCounter++;
+        }
+        else
+        {
+            moodCounter--;
+        }
+    }
+
+    private void fade(float progress)
+    {
+        int index;
+
     }
 
     IEnumerator moodWave()
     {
-        yield return new WaitForSeconds(1f);
-        
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            updateMood();
+            playMood(moodCounter);
+            Debug.Log(moodCounter);
+        }
     }
 
-
+    IEnumerator fader()
+    {
+        for(int i = 1; i < 10; i++)
+        {
+            fade(((float)i)/10);
+            yield return new WaitForSeconds(1);
+        }
+        StopCoroutine(fading);
+    }
 }

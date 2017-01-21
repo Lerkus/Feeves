@@ -3,7 +3,7 @@ using System.Collections;
 
 public class isSided : MonoBehaviour {
 
-    private bool sided = true;
+    private bool sided = false;
     public bool _touching
     {
         get { return sided; }

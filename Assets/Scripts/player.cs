@@ -47,7 +47,7 @@ public class player : MonoBehaviour
         {
             input.x = Mathf.Clamp(input.x,0,1);
         }
-        else if (landing && sides[0]._touching)
+        else if (landing && sides[1]._touching)
         {
             input.x = Mathf.Clamp(input.x, -1, 0);
         }

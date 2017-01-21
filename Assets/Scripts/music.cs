@@ -7,15 +7,46 @@ public class music : MonoBehaviour {
     public AudioSource[] happy;
     public AudioSource[] sad;
 
-    private music musicReferenz;
+    private music musicReference;
 
-    void Awake()
+    private int moodCounter = 0;
+
+    public music _Reference
     {
-        musicReferenz = this;
-        muteAllSpecial();
+        get { return musicReference; }
+        private set { }
     }
 
-    void muteAllSpecial()
+    public void Awake()
+    {
+        musicReference = this;
+        muteAllSpecial();
+        playHappy(111);
+        playSad(111);
+        setVolumeAll(0.25f);
+    }
+
+    public void setVolumeAll(float intensity)
+    {
+        intensity = Mathf.Clamp01(intensity);
+
+        for (int i = 0; i < basic.Length; i++)
+        {
+            basic[i].volume = intensity;
+        }
+
+        for (int i = 0; i < happy.Length; i++)
+        {
+            happy[i].volume = intensity;
+        }
+
+        for (int i = 0; i < sad.Length; i++)
+        {
+            sad[i].volume = intensity;
+        }
+    }
+
+    public void muteAllSpecial()
     {
         for (int i = 0; i < happy.Length; i++)
         {
@@ -28,7 +59,7 @@ public class music : MonoBehaviour {
         }
     }
 
-    void playHappy(int intensity)
+    public void playHappy(int intensity)
     {
         intensity = (int) Mathf.Clamp(intensity,0,happy.Length);
         muteAllSpecial();
@@ -37,7 +68,8 @@ public class music : MonoBehaviour {
             happy[i].mute = false;
         }
     }
-    void playSad(int intensity)
+
+    public void playSad(int intensity)
     {
         intensity = (int)Mathf.Clamp(intensity, 0, sad.Length);
         muteAllSpecial();
@@ -46,4 +78,24 @@ public class music : MonoBehaviour {
             sad[i].mute = false;
         }
     }
+
+    public void playMood(int intensity)
+    {
+        if (intensity > 0)
+        {
+            playHappy(intensity);
+        }
+        else
+        {
+            playSad( (int)Mathf.Abs(intensity));
+        }
+    }
+
+    IEnumerator moodWave()
+    {
+        yield return new WaitForSeconds(1f);
+        
+    }
+
+
 }

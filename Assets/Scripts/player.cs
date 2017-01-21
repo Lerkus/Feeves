@@ -8,8 +8,10 @@ public class player : MonoBehaviour
     public float jumpHightTweaker = 10;
     public float wallkingTweaker = 1;
     public float flyTweaker = 0.5f;
+    private bool landing = false;
 
     public isGrounded grounder;
+    public isSided[] sides;
 
     void Start()
     {
@@ -18,7 +20,16 @@ public class player : MonoBehaviour
 
     void Update()
     {
+        if(jumping && !grounder._grounded)
+        {
+            landing = true;
+        }
 
+        if (landing && grounder._grounded)
+        {
+            landing = false;
+            jumping = false;
+        }
 
         if (Input.GetAxisRaw("Jump") == 1 && grounder._grounded)
         {
@@ -32,7 +43,15 @@ public class player : MonoBehaviour
     {
         Vector3 input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, 0);
 
-        if (!grounder._grounded)
+        if (landing && sides[0]._touching)
+        {
+            input.x = Mathf.Clamp(input.x,0,1);
+        }
+        else if (landing && sides[0]._touching)
+        {
+            input.x = Mathf.Clamp(input.x, -1, 0);
+        }
+        else if (!grounder._grounded)
         {
             input *= flyTweaker;
         }
@@ -46,6 +65,10 @@ public class player : MonoBehaviour
 
     public void jump()
     {
-        rb.AddForce(new Vector3(0, jumpHightTweaker, 0), ForceMode.VelocityChange);
+        if (!jumping)
+        {
+            rb.AddForce(new Vector3(0, jumpHightTweaker, 0), ForceMode.VelocityChange);
+        }
+        jumping = true;
     }
 }

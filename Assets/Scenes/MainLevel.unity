@@ -570,7 +570,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 938467187}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.36, y: 1.69, z: -1.71}
+  m_LocalPosition: {x: 6.36, y: 1.69, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -595,7 +595,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpHightTweaker: 9
   wallkingTweaker: 0.6
-  flyTweaker: 0.05
+  flyTweaker: 0.2
   grounder: {fileID: 727293408}
   sides:
   - {fileID: 924262783}
@@ -632,7 +632,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400018, guid: 4bcd27ef315d55c4b8303be88df45207, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.3
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 400018, guid: 4bcd27ef315d55c4b8303be88df45207, type: 3}
       propertyPath: m_LocalRotation.x
@@ -656,7 +656,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100018, guid: 4bcd27ef315d55c4b8303be88df45207, type: 3}
       propertyPath: m_Name
-      value: Player (1)
+      value: Playermodell
       objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: 4bcd27ef315d55c4b8303be88df45207, type: 3}
       propertyPath: m_Controller

@@ -1,33 +1,15 @@
 fileFormatVersion: 2
-guid: ba70d2c073034d8479a3cc0248c2e8e6
-timeCreated: 1485025903
+guid: 22f6a45e795bcaf47981926f79f6dc46
+timeCreated: 1485033668
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Armature.001
-    100002: Bone
-    100004: Bone_end
-    100006: "Kreiss\xE4ge"
-    100008: "Kreiss\xE4ge.002"
-    100010: //RootNode
-    400000: Armature.001
-    400002: Bone
-    400004: Bone_end
-    400006: "Kreiss\xE4ge"
-    400008: "Kreiss\xE4ge.002"
-    400010: //RootNode
-    2300000: "Kreiss\xE4ge"
-    3300000: "Kreiss\xE4ge"
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: "Kreiss\xE4ge.002"
-    4300002: "Kreiss\xE4ge"
-    7400000: Armature.001|ArmatureAction
-    7400002: "Armature.001|kreiss\xE4ge"
-    7400004: "Armature.001|kreiss\xE4ge.001"
-    7400006: "Armature.001|kreiss\xE4ge.002"
-    7400008: "Kreiss\xE4ge|kreiss\xE4ge"
-    9500000: //RootNode
-    13700000: "Kreiss\xE4ge.002"
   materials:
     importMaterials: 1
     materialName: 0
@@ -86,7 +68,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

@@ -16,6 +16,9 @@ public class player : MonoBehaviour
     public isGrounded grounder;
     public isSided[] sides;
 
+    private Coroutine timeout;
+    private bool skippable = true;
+
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -35,6 +38,13 @@ public class player : MonoBehaviour
             landing = false;
             jumping = false;
             playerAnimation.SetTrigger("IsGroundend");
+        }
+
+        if (Input.GetAxis("Fire1") == 1 && skippable)
+        {
+            skippable = false;
+            timeout = StartCoroutine(timer());
+            music._Reference.next();
         }
 
         if (Input.GetAxisRaw("Jump") == 1 && grounder._grounded)
@@ -93,8 +103,15 @@ public class player : MonoBehaviour
         {
             playerAnimation.SetTrigger("Jumping");
             rb.AddForce(new Vector3(0, jumpHightTweaker, 0), ForceMode.VelocityChange);
-
         }
         jumping = true;
+    }
+
+
+    IEnumerator timer()
+    {
+        yield return new WaitForSeconds(0.5f);
+        skippable = true;
+        StopCoroutine(timeout);
     }
 }

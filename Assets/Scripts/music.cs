@@ -9,9 +9,16 @@ public class music : MonoBehaviour
     public AudioSource[] happy;
     public AudioSource[] sad;
 
-    private music musicReference;
+    private static music musicReference;
 
     private int moodCounter = 0;
+    public int _moodCounter
+    {
+        get { return moodCounter; }
+        private set { }
+    }
+
+
     private bool moodImproving = true;
     private bool fadingIn = false;
 
@@ -19,7 +26,7 @@ public class music : MonoBehaviour
     private int moodCounterMax;
 
     private float globalVolume = 0.25f;
-    private float timeBetweenMoodUpdate = 1f;
+    private float timeBetweenMoodUpdate = 10f;
 
     private GameObject[] playerObjects;
     private GameObject[] happyObjects;
@@ -27,7 +34,7 @@ public class music : MonoBehaviour
 
     List<Coroutine> fading = new List<Coroutine>();
 
-    public music _Reference
+    public static music _Reference
     {
         get { return musicReference; }
         private set { }
@@ -202,15 +209,20 @@ public class music : MonoBehaviour
         }
     }
 
+    public void next()
+    {
+        updateMood();
+        playMood(moodCounter);
+        fading.Add(StartCoroutine(fader()));
+        Debug.Log(moodCounter);
+    }
+
     IEnumerator moodWave()
     {
         while (true)
         {
             yield return new WaitForSeconds(timeBetweenMoodUpdate);
-            updateMood();
-            playMood(moodCounter);
-            fading.Add(StartCoroutine(fader()));
-            Debug.Log(moodCounter);
+            next();
         }
     }
 

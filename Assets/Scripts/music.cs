@@ -34,6 +34,9 @@ public class music : MonoBehaviour
 
     List<Coroutine> fading = new List<Coroutine>();
 
+    List<Coroutine> pitchFaders = new List<Coroutine>();
+    private bool pitchFadeIn = true;
+
     public static music _Reference
     {
         get { return musicReference; }
@@ -49,16 +52,13 @@ public class music : MonoBehaviour
         startMoodWave();
         setVolumeAll(globalVolume);
 
+        pitchFaders.Add(StartCoroutine(pitchFader()));
+
         playerObjects = GameObject.FindGameObjectsWithTag("Player");
         happyObjects = GameObject.FindGameObjectsWithTag("Happy");
         sadObjects = GameObject.FindGameObjectsWithTag("Sad");
 
         globalMoodChange("Happy");
-    }
-
-    public void Start()
-    {
-        
     }
 
     public void setVolumeAll(float intensity)
@@ -67,8 +67,7 @@ public class music : MonoBehaviour
 
         for (int i = 0; i < basic.Length; i++)
         {
-            basic[i].volume = 0;//intensity;
-            basic[i].pitch = 1.15f;
+            basic[i].volume = intensity;
         }
 
         for (int i = 0; i < happy.Length; i++)
@@ -152,6 +151,7 @@ public class music : MonoBehaviour
         else
         {
             muteAllSpecial();
+            pitchFaders.Add(StartCoroutine(pitchFader()));
         }
     }
 
@@ -165,21 +165,16 @@ public class music : MonoBehaviour
         if (moodCounter == moodCounterMax && moodImproving ? !(moodImproving = false) : false)
         {
             fadingIn = !fadingIn;
-            Debug.Log("Habe die Fade richtung umgedreht!");
-            Debug.Log(fading);
         }
 
         if (moodCounter == moodCounterMin && !moodImproving ? moodImproving = true : false)
         {
             fadingIn = !fadingIn;
-            Debug.Log("Habe die Fade richtung umgedreht!");
-            Debug.Log(fading);
         }
 
         if (moodCounter == 0)
         {
             fadingIn = !fadingIn;
-            Debug.Log("Habe die Fade richtung umgedreht!");
         }
 
         if (moodImproving)
@@ -204,16 +199,57 @@ public class music : MonoBehaviour
         }
         else
         {
-            //Do Nothing.
         }
     }
 
-    public void next()
+    private void next()
     {
         updateMood();
         playMood(moodCounter);
         fading.Add(StartCoroutine(fader()));
         Debug.Log(moodCounter);
+    }
+
+
+    IEnumerator pitchFader()
+    {
+        int startI;
+        int endI;
+        float basePitch = 0.8f;
+        float pitchAddon = 0.45f;
+
+        if (pitchFadeIn)
+        {
+            startI = 1;
+            endI = 100;
+        }
+        else
+        {
+            startI = 99;
+            endI = 0;
+        }
+
+        for (int i = startI; pitchFadeIn ? i <= endI : i >= endI;)
+        {
+            basic[0].pitch = basePitch + ((i / 100f) * pitchAddon);
+
+            if (pitchFadeIn)
+            {
+                i++;
+                Debug.Log("pitch fade in");
+            }
+            else
+            {
+                i--;
+                Debug.Log("pitch fade out");
+            }
+
+            yield return new WaitForSeconds(timeBetweenMoodUpdate / 1000);
+        }
+        Debug.Log("Coroutine endet");
+        pitchFadeIn = !pitchFadeIn;
+        StopCoroutine(pitchFaders[0]);
+        pitchFaders.RemoveAt(0);
     }
 
     IEnumerator moodWave()

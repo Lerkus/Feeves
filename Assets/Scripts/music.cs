@@ -207,7 +207,6 @@ public class music : MonoBehaviour
         updateMood();
         playMood(moodCounter);
         fading.Add(StartCoroutine(fader()));
-        Debug.Log(moodCounter);
     }
 
 
@@ -236,17 +235,14 @@ public class music : MonoBehaviour
             if (pitchFadeIn)
             {
                 i++;
-                Debug.Log("pitch fade in");
             }
             else
             {
                 i--;
-                Debug.Log("pitch fade out");
             }
 
             yield return new WaitForSeconds(timeBetweenMoodUpdate / 1000);
         }
-        Debug.Log("Coroutine endet");
         pitchFadeIn = !pitchFadeIn;
         StopCoroutine(pitchFaders[0]);
         pitchFaders.RemoveAt(0);

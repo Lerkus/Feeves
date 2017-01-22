@@ -180,7 +180,6 @@ public class music : MonoBehaviour
         {
             fadingIn = !fadingIn;
             Debug.Log("Habe die Fade richtung umgedreht!");
-            Debug.Log(fading);
         }
 
         if (moodImproving)

@@ -122,7 +122,7 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -555, y: 48}
+  m_AnchoredPosition: {x: -532, y: 48}
   m_SizeDelta: {x: 254, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &113608331
@@ -386,6 +386,7 @@ GameObject:
   - 124: {fileID: 466085679}
   - 92: {fileID: 466085678}
   - 81: {fileID: 466085677}
+  - 114: {fileID: 466085682}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -455,12 +456,26 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 466085676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 326, y: 237, z: 10}
+  m_LocalPosition: {x: 361, y: 237, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &466085682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 466085676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d7c559d9db8fc340a8f58b915bf41d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveLeft: 1
+  TransformPositon: 30
+  speed: 2
 --- !u!1 &752222968
 GameObject:
   m_ObjectHideFlags: 0
@@ -835,7 +850,6 @@ GameObject:
   - 222: {fileID: 1344673308}
   - 114: {fileID: 1344673307}
   - 114: {fileID: 1344673306}
-  - 114: {fileID: 1344673309}
   m_Layer: 5
   m_Name: Start
   m_TagString: Untagged
@@ -947,17 +961,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1344673304}
---- !u!114 &1344673309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1344673304}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df29c7fa5c62fa84cb2839bd8030eb5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1782662092
 GameObject:
   m_ObjectHideFlags: 0
@@ -992,7 +995,7 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -272, y: 159}
+  m_AnchoredPosition: {x: -566, y: 159}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1782662094

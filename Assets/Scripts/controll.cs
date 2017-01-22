@@ -23,7 +23,6 @@ public class controll : MonoBehaviour
     {
         if (activeString == gameObject.tag)
         {
-            Debug.Log("Tod");
             if (other.tag == "Player")
             {
                 switch (type)
@@ -37,6 +36,7 @@ public class controll : MonoBehaviour
 
     private void death()
     {
+        Debug.Log("Tod");
         SceneManager.LoadScene("MainLevel");
     }
 
@@ -63,7 +63,7 @@ public class controll : MonoBehaviour
                     playerData.maxSpeed = 10;
                     break;
                 case "Sad":
-                    playerData.jumpHightTweaker = 6.5f;
+                    playerData.jumpHightTweaker = 7.5f;
                     playerData.wallkingTweaker = 0.3f;
                     playerData.flyTweaker = 0.4f;
                     playerData.maxSpeed = 10;
@@ -75,11 +75,10 @@ public class controll : MonoBehaviour
 
     private void updateGraphic()
     {
-        if (gameObject.tag == activeString)
+        if (gameObject.tag == activeString || gameObject.tag == "Player")
         {
             gameObject.SetActive(true);
         }
-
         else
         {
             gameObject.SetActive(false);

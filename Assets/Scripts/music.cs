@@ -26,7 +26,7 @@ public class music : MonoBehaviour
     private int moodCounterMax;
 
     private float globalVolume = 0.25f;
-    private float timeBetweenMoodUpdate = 10f;
+    private float timeBetweenMoodUpdate = 3f;
 
     private GameObject[] playerObjects;
     private GameObject[] happyObjects;

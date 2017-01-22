@@ -77,12 +77,12 @@ public class controll : MonoBehaviour
     {
         if (gameObject.tag == activeString)
         {
-            gameObject.GetComponent<MeshRenderer>().enabled = true;
+            gameObject.SetActive(true);
         }
 
         else
         {
-            gameObject.GetComponent<MeshRenderer>().enabled = false;
+            gameObject.SetActive(false);
         }
     }
 }

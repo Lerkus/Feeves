@@ -2653,7 +2653,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: 0
-  amplitude: 5
+  amplitude: 6
   timeTweaker: 15
 --- !u!4 &735985585
 Transform:
@@ -5166,7 +5166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: 0
-  amplitude: 3
+  amplitude: 4
   timeTweaker: 10
 --- !u!4 &1328748480
 Transform:
@@ -7726,6 +7726,36 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010021753734, guid: c6c7a9b3f42b175419f5b5cc90f07a02, type: 2}
       propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000013647352384, guid: c6c7a9b3f42b175419f5b5cc90f07a02,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 002d8189908cd394b9e59ee7e3b8c5ad, type: 3}
+    - target: {fileID: 82000010790636984, guid: c6c7a9b3f42b175419f5b5cc90f07a02,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2cb8329517434bd4f8e73382d44dea0e, type: 3}
+    - target: {fileID: 82000011969513718, guid: c6c7a9b3f42b175419f5b5cc90f07a02,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: cc8a0dcf9f9e41445be2e699a81ec001, type: 3}
+    - target: {fileID: 82000012174629920, guid: c6c7a9b3f42b175419f5b5cc90f07a02,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2cb8329517434bd4f8e73382d44dea0e, type: 3}
+    - target: {fileID: 82000010061192718, guid: c6c7a9b3f42b175419f5b5cc90f07a02,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: cc8a0dcf9f9e41445be2e699a81ec001, type: 3}
+    - target: {fileID: 114000014148086252, guid: c6c7a9b3f42b175419f5b5cc90f07a02,
+        type: 2}
+      propertyPath: globalVolume
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

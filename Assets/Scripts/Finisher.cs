@@ -25,7 +25,7 @@ public class Finisher : MonoBehaviour
     IEnumerator winning()
     {
         winMessage();
-        yield return new WaitForSeconds(5f);
-        SceneManager.LoadScene("MainLevel");
+        yield return new WaitForSeconds(0.1f);
+        SceneManager.LoadScene("End");
     }
 }

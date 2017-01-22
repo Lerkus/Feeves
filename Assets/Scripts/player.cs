@@ -39,13 +39,13 @@ public class player : MonoBehaviour
             jumping = false;
             playerAnimation.SetTrigger("IsGroundend");
         }
-
+        /*
         if (Input.GetAxis("Fire1") == 1 && skippable)
         {
             skippable = false;
             timeout = StartCoroutine(timer());
             music._Reference.next();
-        }
+        }*/
 
         if (Input.GetAxisRaw("Jump") == 1 && grounder._grounded)
         {
@@ -110,7 +110,7 @@ public class player : MonoBehaviour
 
     IEnumerator timer()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         skippable = true;
         StopCoroutine(timeout);
     }

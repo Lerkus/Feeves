@@ -24,13 +24,11 @@ public class moveUpAndDown : MonoBehaviour
 
         if (Mathf.Abs(transform.position.y - endPos.y) < 0.00001f)
         {
-            Debug.Log("Lerp ende");
             Vector3 tempPos = endPos;
             endPos = startPos;
             startPos = tempPos;
 
             startTime = Time.time;
-            Debug.Log("habe Werte geändert.");
         }
 
     }
